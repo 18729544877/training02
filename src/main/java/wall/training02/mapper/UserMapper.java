@@ -11,5 +11,8 @@ public interface UserMapper {
  
     User Sel(int id);
     List<User> checkUser();
-    
+	int updateNameById(User user);
+	int delNameById(int id);
+	int insertUser(User user);
+    int insertUserBatch(List<User> params);
 }

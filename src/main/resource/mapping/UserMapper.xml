@@ -18,4 +18,28 @@
 		FROM
 		user
 	</select>
+	
+	<insert id="insertUser" parameterType="wall.training02.entity.User" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO user (id, userName)
+	VALUES (#{id}, #{userName})
+	</insert>
+	
+	<insert id="insertUserBatch" parameterType="java.util.List">
+	INSERT INTO user (id, userName)
+	VALUES 
+	<foreach collection="list" item="emp" separator=",">
+	(#{emp.id}, #{emp.userName})
+	</foreach>
+	</insert>
+	
+	<update id="updateNameById" parameterType="wall.training02.entity.User">
+		UPDATE user
+		<set>
+			<if test="userName != null">userName = #{userName}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	<delete id="delNameById">
+		DELETE FROM user where id = #{id}
+	</delete>
 </mapper>
